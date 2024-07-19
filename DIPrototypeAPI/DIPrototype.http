@@ -1,0 +1,6 @@
+@DIPrototype_HostAddress = http://localhost:5008
+
+GET {{DIPrototype_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

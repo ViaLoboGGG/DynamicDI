@@ -1,0 +1,24 @@
+version: '3.4'
+networks:
+    dev:
+      driver: bridge
+services:
+  diprototype:
+    image: ${DOCKER_REGISTRY-}diprototype
+    build:
+      context: DIPrototypeAPI
+      dockerfile: Dockerfile
+
+    networks:
+        - dev
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - dev
